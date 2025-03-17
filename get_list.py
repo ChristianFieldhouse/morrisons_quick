@@ -100,6 +100,7 @@ for product, coord in locations.items():
 # Solve the TSP over the shopping list using brute force.
 # Assume starting position is at (0, 0) (Fresh Produce Section).
 start = (0, 0)
+end = (0, 4) # tills
 best_order = None
 best_total_distance = float('inf')
 
@@ -114,6 +115,7 @@ for perm in itertools.permutations(shopping_list):
             break
         total_dist += euclidean_distance(current, locations[item])
         current = locations[item]
+    total_dist += euclidean_distance(current, end)
     if valid and total_dist < best_total_distance:
         best_total_distance = total_dist
         best_order = perm
